@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+  <title>PoC - documentElement.clientHeight</title>
+</head>
+<body>
+  <p id="sizeView"></p>
+  <script>
+    (function() {
+      document.querySelector('#sizeView').textContent = document.documentElement.clientWidth + ' x ' + document.documentElement.clientHeight
+    })();
+  </script>
+  <p id="originView"></p>
+  <script>
+    (function() {
+      document.querySelector('#originView').textContent = location.origin
+    })();
+  </script>
+</body>
+</html>

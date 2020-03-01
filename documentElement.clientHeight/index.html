@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>PoC - documentElement.clientHeight</title>
+</head>
+<body>
+  <p id="userAgent"></p>
+  <script>
+    (function() {
+      document.querySelector('#userAgent').textContent = navigator.userAgent
+    })()
+  </script>
+
+  <p>OK - with src iframe</p>
+  <iframe src="frame.html" width="300" height="300" scrolling="no" frameborder="0" style="background-color: green;"></iframe>
+
+  <p>NG - no src iframe</p>
+  <iframe id="fif" width="300" height="300" scrolling="no" frameborder="0" style="background-color: green;"></iframe>
+  <script>
+    (function() {
+      document.querySelector('#fif').contentWindow.document.write('<div background-color: green;"><p id="sizeView"><\/p><script>(function() {document.querySelector(\'#sizeView\').textContent = document.documentElement.clientWidth + \' x \' + document.documentElement.clientHeight})();<\/script><p id="originView"><\/p><script>(function() {document.querySelector(\'#originView\').textContent = location.origin})();<\/script><\/div>');
+      document.querySelector('#fif').contentWindow.document.close();
+    })();
+  </script>
+</body>
+</html>
